@@ -1,0 +1,21 @@
+{
+  "name": "JUDr. Iveta Hrebenárová - Advokátka",
+  "short_name": "JUDr. Hrebenárová",
+  "description": "Profesionálne právne služby v Prešove s individuálnym prístupom ku každému klientovi.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF9F6",
+  "theme_color": "#1B4332",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
