@@ -14,14 +14,17 @@ interface AccessibilityContextType {
   toggleContrast: () => void
 }
 
-const AccessibilityContext = createContext<AccessibilityContextType | undefined>(undefined)
+const AccessibilityContext = createContext<AccessibilityContextType>({
+  fontSize: 'normal',
+  contrast: 'normal',
+  setFontSize: () => {},
+  setContrast: () => {},
+  cycleFontSize: () => {},
+  toggleContrast: () => {},
+})
 
 export function useAccessibility() {
-  const context = useContext(AccessibilityContext)
-  if (context === undefined) {
-    throw new Error('useAccessibility must be used within an AccessibilityProvider')
-  }
-  return context
+  return useContext(AccessibilityContext)
 }
 
 export function AccessibilityProvider({ children }: { children: React.ReactNode }) {
@@ -87,10 +90,6 @@ export function AccessibilityProvider({ children }: { children: React.ReactNode 
 
   const toggleContrast = () => {
     setContrastState((prev) => (prev === 'normal' ? 'high' : 'normal'))
-  }
-
-  if (!mounted) {
-    return <>{children}</>
   }
 
   return (

@@ -9,14 +9,13 @@ interface ThemeContextType {
   toggleTheme: () => void
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
+const ThemeContext = createContext<ThemeContextType>({
+  theme: 'light',
+  toggleTheme: () => {},
+})
 
 export function useTheme() {
-  const context = useContext(ThemeContext)
-  if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider')
-  }
-  return context
+  return useContext(ThemeContext)
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
@@ -50,11 +49,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
-  }
-
-  // Prevent flash of incorrect theme
-  if (!mounted) {
-    return <>{children}</>
   }
 
   return (
